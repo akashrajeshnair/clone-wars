@@ -1,10 +1,15 @@
-import { auth } from "./firebase";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { addUser, getUser , updateUser, deleteUser } from '../server/firestore.js';
+const auth = getAuth();
 
 // Sign up function
 export const signUp = async (email, password) => {
   try {
-    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-    return userCredential.user;
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+        return user
+    })
   } catch (error) {
     throw error;
   }
@@ -13,8 +18,10 @@ export const signUp = async (email, password) => {
 // Sign in function
 export const signIn = async (email, password) => {
   try {
-    const userCredential = await auth.signInWithEmailAndPassword(email, password);
-    return userCredential.user;
+    const userCredential = await signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+    })
   } catch (error) {
     throw error;
   }

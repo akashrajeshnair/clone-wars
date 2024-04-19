@@ -1,9 +1,20 @@
 import React from "react";
-import SignIn from "./pages/Signin/SignIn"
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+  }from "react-router-dom";
+import SignIn from "./pages/Signin/signin"
+import Feed from "./pages/Feed/feed"
 
 function App(){
     return(
-        <SignIn></SignIn>
+        <Router>
+            <Routes>
+                <Route exact path="/" element={<SignIn/>}></Route>
+                <Route exact path="/feed" element={<Feed/>}></Route>
+            </Routes>
+        </Router>
     )
 }
 

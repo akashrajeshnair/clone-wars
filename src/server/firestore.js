@@ -1,9 +1,12 @@
 import { db } from "./firebase";
 
 // Add user function
-export const addUser = async (user) => {
+export const addUser = async (username, password) => {
     try {
-        const docRef = await db.collection('users').add(user);
+        const docRef = await db.addDoc(db.collection(db, "users"), {
+            username: username,
+            password: password,
+        });
         return docRef.id;
     } catch (error) {
         throw error;
