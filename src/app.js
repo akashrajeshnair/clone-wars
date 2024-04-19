@@ -1,7 +1,10 @@
 import React from "react";
+import SignIn from "./pages/Signin/SignIn"
 
 function App(){
     return(
-        <div>Hello!</div>
+        <SignIn></SignIn>
     )
 }
+
+export default App;
